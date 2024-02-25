@@ -1,25 +1,9 @@
-pipeline {
-    agent any
-
-    triggers {
-        cron('H/30 * * * *') // Poll GitHub every 30 minutes
+properties([[$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('H/30 * * * *')])])
+node {
+    stage("Checkout") {
+        git branch: 'main', url: 'https://github.com/DrDrumm911/MySoftware.git'
     }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout your repository from GitHub
-                git 'https://github.com/yourusername/yourrepository.git'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                // Your build steps here
-                sh 'echo "Building..."'
-            }
-        }
-
-        // Add more stages as needed
+    stage("Build"){
+        sh 'echo "Building..."'
     }
 }
