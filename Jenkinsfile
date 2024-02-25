@@ -9,16 +9,17 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your repository from GitHub
-                git 'https://github.com/DrDrumm911/MySoftware.git'
+                git 'https://github.com/yourusername/yourrepository.git'
             }
         }
 
         stage('Build') {
             steps {
                 // Your build steps here
+                sh 'echo "Building..."'
             }
         }
 
-        // Additional stages as needed
+        // Add more stages as needed
     }
 }
